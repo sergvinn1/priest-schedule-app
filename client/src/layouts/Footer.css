@@ -1,0 +1,13 @@
+/* client/src/layouts/Footer.css */
+.footer {
+    background-color: var(--color-diia-dark-text); /* Dark background for footer */
+    color: white;
+    padding: var(--spacing-md) var(--spacing-lg);
+    margin-top: var(--spacing-xl); /* Відступ від основного контенту */
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+}

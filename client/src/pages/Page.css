@@ -1,0 +1,26 @@
+/* client/src/pages/Page.css */
+.page-container {
+    background-color: var(--color-bg-card);
+    padding: var(--spacing-xl);
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-md);
+    min-height: 400px; /* Для візуального ефекту */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: var(--spacing-md);
+}
+
+.page-container h2 {
+    font-size: 2rem;
+    color: var(--color-diia-blue);
+    margin-bottom: var(--spacing-md);
+}
+
+.page-container p {
+    font-size: 1.1rem;
+    color: var(--color-diia-dark-text);
+    max-width: 600px;
+}

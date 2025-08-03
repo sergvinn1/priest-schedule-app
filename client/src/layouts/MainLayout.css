@@ -1,0 +1,27 @@
+/* client/src/layouts/MainLayout.css */
+.main-layout {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Забезпечує, що футер буде внизу сторінки */
+}
+
+.main-content {
+    flex: 1; /* Займе весь доступний простір між хедером і футером */
+    padding: var(--spacing-lg);
+    max-width: 1200px; /* Обмеження ширини контенту, як у "Дія" */
+    margin: 0 auto; /* Центрування контенту */
+    width: 100%; /* Забезпечує адаптивність */
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+    .main-content {
+        padding: var(--spacing-md);
+    }
+}
+
+@media (max-width: 480px) {
+    .main-content {
+        padding: var(--spacing-sm);
+    }
+}

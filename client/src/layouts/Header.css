@@ -1,0 +1,63 @@
+/* client/src/layouts/Header.css */
+.header {
+    background-color: var(--color-bg-card);
+    border-bottom: 1px solid var(--color-border);
+    padding: var(--spacing-md) var(--spacing-lg);
+    box-shadow: var(--shadow-sm);
+}
+
+.header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-diia-blue);
+}
+
+.nav-menu a {
+    margin-left: var(--spacing-lg);
+    color: var(--color-text-primary);
+    font-weight: 500;
+    transition: color 0.2s ease-in-out;
+}
+
+.nav-menu a:hover {
+    color: var(--color-diia-blue);
+    text-decoration: none;
+}
+
+.login-button {
+    background-color: var(--color-diia-blue);
+    color: white !important; /* Override default link color */
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: var(--border-radius-md);
+    transition: background-color 0.2s ease-in-out;
+}
+
+.login-button:hover {
+    background-color: #004ba0; /* Darker blue on hover */
+    text-decoration: none;
+}
+
+/* Responsive Header */
+@media (max-width: 768px) {
+    .header-container {
+        flex-direction: column;
+        gap: var(--spacing-md);
+    }
+    .nav-menu {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: var(--spacing-md);
+    }
+    .nav-menu a {
+        margin-left: 0;
+    }
+}
