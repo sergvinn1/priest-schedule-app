@@ -1,0 +1,16 @@
+/* client/src/pages/admin/AdminPage.css (ПОВНИЙ КОД) */
+.admin-page-content {
+    padding: var(--spacing-lg);
+}
+
+.admin-page-content h2 {
+    font-size: 2rem;
+    color: var(--color-diia-blue);
+    margin-bottom: var(--spacing-xl);
+}
+
+.admin-page-content p {
+    font-size: 1.1rem;
+    color: var(--color-text-primary);
+    line-height: 1.6;
+}
