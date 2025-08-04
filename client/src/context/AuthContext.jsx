@@ -1,90 +1,111 @@
 // client/src/context/AuthContext.jsx (ПОВНИЙ КОД)
-import React, { createContext, useState, useEffect, useContext } from 'react';
+import React, { createContext, useContext, useState, useEffect } from 'react';
 import axios from 'axios';
-import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
-const AuthContext = createContext();
+const AuthContext = createContext(null);
 
 export const AuthProvider = ({ children }) => {
-    const [user, setUser] = useState(null); // Зберігаємо інформацію про користувача
-    const [loading, setLoading] = useState(true); // Для стану завантаження (наприклад, при початковій перевірці токена)
-    const navigate = useNavigate(); // Для перенаправлення користувача
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const [user, setUser] = useState(null);
+    const [loading, setLoading] = useState(true); // Початковий стан: завантаження
 
-    // Базовий URL для API
+    const navigate = useNavigate();
+
     const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api/v1';
 
     // Функція для перевірки стану аутентифікації при завантаженні
     useEffect(() => {
-        const checkUser = async () => {
+        const checkAuthStatus = async () => {
             try {
-                // Axios автоматично надсилає куки, якщо credentials: true
-                const res = await axios.get(`${API_URL}/auth/me`, {
-                    withCredentials: true // Важливо для надсилання куків
-                });
+                const res = await axios.get(`${API_URL}/auth/me`, { withCredentials: true });
                 if (res.data.success) {
-                    setUser(res.data.data);
+                    setIsAuthenticated(true);
+                    setUser(res.data.user);
+                } else {
+                    setIsAuthenticated(false);
+                    setUser(null);
                 }
-            } catch (error) {
-                console.error('Немає авторизованого користувача або токен недійсний:', error.response?.data?.error || error.message);
-                setUser(null); // Очистити користувача, якщо токен недійсний
+            } catch (err) {
+                setIsAuthenticated(false);
+                setUser(null);
             } finally {
-                setLoading(false);
+                setLoading(false); // Завершили завантаження
             }
         };
 
-        checkUser();
-    }, []); // Запускається лише один раз при завантаженні компонента
+        checkAuthStatus();
+    }, []);
 
-    // Функція входу
     const login = async (email, password) => {
+        setLoading(true); // Встановлюємо завантаження під час логіну
         try {
-            setLoading(true);
-            const res = await axios.post(`${API_URL}/auth/login`, { email, password }, {
-                withCredentials: true,
-                headers: { 'Content-Type': 'application/json' }
-            });
-
+            const res = await axios.post(`${API_URL}/auth/login`, { email, password }, { withCredentials: true });
             if (res.data.success) {
-                setUser(res.data.user); // Зберігаємо user замість data.data
-                toast.success(`Вітаємо, ${res.data.user.username}!`);
-                return true;
+                setIsAuthenticated(true);
+                setUser(res.data.user);
+                toast.success('Ви успішно увійшли!');
+                navigate('/');
+            } else {
+                toast.error(res.data.error || 'Неправильні облікові дані.');
+                setIsAuthenticated(false);
+                setUser(null);
             }
-            return false;
-        } catch (error) {
-            const errorMessage = error.response?.data?.error || 'Помилка входу';
-            toast.error(errorMessage);
-            console.error('Login error:', error);
-            return false;
+        } catch (err) {
+            toast.error(err.response?.data?.error || err.message || 'Помилка входу.');
+            setIsAuthenticated(false);
+            setUser(null);
         } finally {
-            setLoading(false);
+            setLoading(false); // Завершуємо завантаження
         }
     };
 
-    // Функція виходу
-    const logout = async () => {
+    const register = async (username, email, password) => {
+        setLoading(true); // Встановлюємо завантаження під час реєстрації
         try {
-            await axios.get(`${API_URL}/auth/logout`, {
-                withCredentials: true
-            });
+            const res = await axios.post(`${API_URL}/auth/register`, { username, email, password }, { withCredentials: true });
+            if (res.data.success) {
+                setIsAuthenticated(true);
+                setUser(res.data.user);
+                toast.success('Реєстрація успішна! Ви увійшли.');
+                navigate('/');
+            } else {
+                toast.error(res.data.error || 'Помилка реєстрації.');
+                setIsAuthenticated(false);
+                setUser(null);
+            }
+        } catch (err) {
+            toast.error(err.response?.data?.error || err.message || 'Помилка реєстрації.');
+            setIsAuthenticated(false);
             setUser(null);
-            toast.info('Ви успішно вийшли.');
-            navigate('/login'); // Перенаправити на сторінку входу
-        } catch (error) {
-            const errorMessage = error.response?.data?.error || 'Помилка виходу';
-            toast.error(errorMessage);
-            console.error('Logout error:', error);
+        } finally {
+            setLoading(false); // Завершуємо завантаження
+        }
+    };
+
+    const logout = async () => {
+        setLoading(true); // Встановлюємо завантаження під час виходу
+        try {
+            await axios.post(`${API_URL}/auth/logout`, {}, { withCredentials: true });
+            setIsAuthenticated(false);
+            setUser(null);
+            toast.success('Ви успішно вийшли.');
+            navigate('/login');
+        } catch (err) {
+            toast.error(err.response?.data?.error || err.message || 'Помилка виходу.');
+        } finally {
+            setLoading(false); // Завершуємо завантаження
         }
     };
 
     return (
-        <AuthContext.Provider value={{ user, loading, login, logout }}>
+        <AuthContext.Provider value={{ isAuthenticated, user, loading, login, logout, register }}>
             {children}
         </AuthContext.Provider>
     );
 };
 
-// Хук для зручного використання контексту
 export const useAuth = () => {
     return useContext(AuthContext);
 };

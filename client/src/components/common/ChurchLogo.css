@@ -1,0 +1,99 @@
+/* client/src/components/common/ChurchLogo.css (ПОВНИЙ КОД) */
+.church-logo {
+    width: 40px; /* Базовий розмір логотипу */
+    height: 40px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* Переконайтесь, що він не заважає тексту логотипу, якщо використовується разом */
+}
+
+.church-logo .dome-base {
+    position: absolute;
+    bottom: 0;
+    width: 70%;
+    height: 10px;
+    background-color: var(--color-diia-blue); /* Колір основи купола */
+    border-radius: 5px 5px 0 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.church-logo .dome {
+    position: absolute;
+    bottom: 8px; /* Підняти над основою */
+    width: 30px;
+    height: 30px;
+    background-color: var(--color-gold); /* Золотий колір купола */
+    border-radius: 50% 50% 0 0 / 100% 100% 0 0; /* Форма купола */
+    overflow: hidden; /* Обрізаємо все, що виходить за межі купола */
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3), 0 5px 15px rgba(0, 0, 0, 0.3);
+    /* Анімація для купола, якщо потрібно */
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Хрест на куполі */
+.church-logo .cross-vertical {
+    position: absolute;
+    width: 4px;
+    height: 100%;
+    background-color: var(--color-light-text); /* Колір хреста */
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1; /* Перекриває купол */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.church-logo .cross-horizontal {
+    position: absolute;
+    width: 100%;
+    height: 4px;
+    background-color: var(--color-light-text);
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    z-index: 1;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Анімації та інтерактивність */
+.church-logo:hover .dome {
+    transform: translateY(-5px); /* Легкий підйом при наведенні */
+}
+.church-logo:hover .cross-vertical,
+.church-logo:hover .cross-horizontal {
+    background-color: var(--color-white); /* Зміна кольору хреста при наведенні */
+}
+
+/* Розміри для використання в хедері */
+.header .church-logo {
+    width: 30px; /* Зменшуємо розмір для хедера */
+    height: 30px;
+    margin-right: var(--spacing-sm);
+}
+.header .church-logo .dome-base {
+    height: 7px;
+}
+.header .church-logo .dome {
+    width: 25px;
+    height: 25px;
+    bottom: 6px;
+}
+.header .church-logo .cross-vertical,
+.header .church-logo .cross-horizontal {
+    width: 3px;
+    height: 3px; /* Зменшуємо розмір хреста для відповідності */
+}
+.header .church-logo .cross-vertical { height: 100%; } /* Повертаємо повну висоту для вертикального */
+.header .church-logo .cross-horizontal { width: 100%; } /* Повертаємо повну ширину для горизонтального */
+
+
+/* Для темної теми, якщо буде */
+body.dark-theme .church-logo .dome {
+    box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.1), 0 5px 15px rgba(0, 0, 0, 0.5);
+}
+body.dark-theme .church-logo .cross-vertical,
+body.dark-theme .church-logo .cross-horizontal {
+    background-color: var(--color-diia-light-blue);
+}

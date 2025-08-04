@@ -6,38 +6,37 @@ import HomePage from './pages/HomePage';
 import SchedulePage from './pages/SchedulePage';
 import PriestsPage from './pages/PriestsPage';
 import LoginPage from './pages/LoginPage';
+import RegisterPage from './pages/RegisterPage'; // <--- ПЕРЕКОНАЙТЕСЯ, ЩО ЦЕЙ ІМПОРТ Є
 import PrivateRoute from './components/routing/PrivateRoute';
 import { AuthProvider } from './context/AuthContext';
 import './App.css';
-import AdminLayout from './layouts/AdminLayout'; // Імпортуємо AdminLayout
-import AdminPriestsPage from './pages/admin/AdminPriestsPage'; // Будемо створювати
-import AdminSchedulesPage from './pages/admin/AdminSchedulesPage'; // Будемо створювати
+import AdminLayout from './layouts/AdminLayout';
+import AdminPriestsPage from './pages/admin/AdminPriestsPage';
+import AdminSchedulesPage from './pages/admin/AdminSchedulesPage';
 
 function App() {
     return (
-        <Router>
-            <AuthProvider>
+        <Router> {/* Єдиний BrowserRouter для всього додатку */}
+            <AuthProvider> {/* AuthProvider обгортає Routes, щоб useNavigate працював */}
                 <Routes>
                     <Route path="/" element={<MainLayout><HomePage /></MainLayout>} />
                     <Route path="/schedule" element={<MainLayout><SchedulePage /></MainLayout>} />
                     <Route path="/priests" element={<MainLayout><PriestsPage /></MainLayout>} />
                     <Route path="/login" element={<MainLayout><LoginPage /></MainLayout>} />
+                    <Route path="/register" element={<MainLayout><RegisterPage /></MainLayout>} /> {/* <--- ПЕРЕКОНАЙТЕСЯ, ЩО ЦЕЙ МАРШРУТ Є */}
 
-                    {/* Маршрути для адмін-панелі */}
+                    {/* Маршрути для адмін-панелі, захищені PrivateRoute */}
                     <Route
                         path="/admin"
                         element={
                             <PrivateRoute roles={['admin']}>
-                                <AdminLayout /> {/* AdminLayout буде містити вкладені маршрути */}
+                                <AdminLayout />
                             </PrivateRoute>
                         }
                     >
-                        <Route index element={<AdminPriestsPage />} /> {/* Головна сторінка адмінки - список священників */}
+                        <Route index element={<AdminPriestsPage />} />
                         <Route path="priests" element={<AdminPriestsPage />} />
                         <Route path="schedules" element={<AdminSchedulesPage />} />
-                        {/* Додати маршрути для додавання/редагування пізніше */}
-                        {/* <Route path="priests/new" element={<AdminAddPriestPage />} /> */}
-                        {/* <Route path="priests/edit/:id" element={<AdminEditPriestPage />} /> */}
                     </Route>
 
                     {/* Додамо 404 сторінку пізніше */}

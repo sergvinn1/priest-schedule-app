@@ -4,10 +4,27 @@
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    --color-gold: #FFD700; /* Золотий */
+    --color-light-text: #F0F0F0; /* Світлий текст/елементи */
+    --color-white: #FFFFFF;
+    --color-bg-header: var(--color-white); /* Білий фон для хедера */
+    --color-text-primary: #333; /* Основний колір тексту */
+    --color-text-secondary: #666; /* Додатковий колір тексту */
 }
 .App {
     /* App має займати весь доступний простір, щоб main-layout теж займав */
     flex: 1;
     display: flex;
     flex-direction: column;
+}
+
+.loading-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 50vh; /* Щоб займало більшу частину екрану */
+    font-size: 1.5rem;
+    color: var(--color-diia-blue);
+    font-weight: bold;
+    /* Додайте спіннер, якщо хочете */
 }

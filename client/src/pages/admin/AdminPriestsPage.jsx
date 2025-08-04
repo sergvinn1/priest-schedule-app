@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import Button from '../../components/buttons/Button';
+import Input from '../../components/forms/Input'; // <--- ДОДАНО: Імпорт компонента Input
 import { FaEdit, FaTrash, FaPlus } from 'react-icons/fa';
 import './AdminPriestsPage.css'; // Стилі для сторінки
 

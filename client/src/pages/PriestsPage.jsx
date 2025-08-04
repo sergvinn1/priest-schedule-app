@@ -40,7 +40,7 @@ const PriestsPage = () => {
     if (loading) {
         return (
             <div className="page-container">
-                <h2>Наші Священники</h2>
+                <h2>Духовенство</h2>
                 <p>Завантаження священників...</p>
             </div>
         );
@@ -59,7 +59,7 @@ const PriestsPage = () => {
     if (priests.length === 0) {
         return (
             <div className="page-container">
-                <h2>Наші Священники</h2>
+                <h2>Духовенство</h2>
                 <p>Немає доступних священників.</p>
             </div>
         );
@@ -67,7 +67,7 @@ const PriestsPage = () => {
 
     return (
         <div className="page-container">
-            <h2>Наші Священники</h2>
+            <h2>Духовенство</h2>
             <div className="priests-grid">
                 {priests.map((priest) => (
                     <PriestCard key={priest._id} priest={priest} />

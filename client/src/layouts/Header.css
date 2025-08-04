@@ -1,63 +1,224 @@
-/* client/src/layouts/Header.css */
+/* client/src/components/layout/Header.css (ПОВНИЙ КОД) */
 .header {
-    background-color: var(--color-bg-card);
-    border-bottom: 1px solid var(--color-border);
-    padding: var(--spacing-md) var(--spacing-lg);
-    box-shadow: var(--shadow-sm);
+    background-color: var(--color-bg-header); /* Світлий фон */
+    color: var(--color-text-primary);
+    box-shadow: var(--shadow-md); /* Красива тінь */
+    padding: var(--spacing-md) 0;
+    position: sticky; /* Фіксований хедер при прокрутці */
+    top: 0;
+    z-index: 1000; /* Щоб хедер був поверх іншого контенту */
 }
 
 .header-container {
-    max-width: 1200px;
+    max-width: var(--max-width-content);
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 0 var(--spacing-lg); /* Горизонтальні відступи */
 }
 
 .logo {
-    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: var(--color-diia-blue); /* Колір для логотипу */
+    font-size: 1.8rem;
     font-weight: 700;
-    color: var(--color-diia-blue);
-}
-
-.nav-menu a {
-    margin-left: var(--spacing-lg);
-    color: var(--color-text-primary);
-    font-weight: 500;
+    gap: var(--spacing-sm);
     transition: color 0.2s ease-in-out;
 }
 
-.nav-menu a:hover {
+.logo:hover {
+    color: var(--color-diia-dark-text);
+}
+
+.logo-icon {
+    /* Стилі для компонента ChurchLogo, які передаються через className */
+    width: 35px; /* Задайте бажаний розмір */
+    height: 35px;
+}
+
+.logo-text {
+    font-family: 'Georgia', serif; /* Трохи інший шрифт для назви */
+    font-weight: 700;
+}
+
+.main-nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: var(--spacing-xl); /* Збільшуємо відстань між пунктами */
+}
+
+.main-nav a {
+    color: var(--color-text-primary);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1.1rem;
+    padding: var(--spacing-sm) 0;
+    position: relative;
+    transition: color 0.2s ease-in-out;
+    display: flex; /* Для іконок */
+    align-items: center;
+    gap: var(--spacing-xs);
+}
+
+.main-nav a:hover {
     color: var(--color-diia-blue);
-    text-decoration: none;
 }
 
-.login-button {
+/* Анімація підкреслення */
+.main-nav a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
     background-color: var(--color-diia-blue);
-    color: white !important; /* Override default link color */
-    padding: var(--spacing-sm) var(--spacing-md);
-    border-radius: var(--border-radius-md);
-    transition: background-color 0.2s ease-in-out;
+    bottom: 0;
+    left: 0;
+    transition: width 0.3s ease-in-out;
 }
 
-.login-button:hover {
-    background-color: #004ba0; /* Darker blue on hover */
-    text-decoration: none;
+.main-nav a:hover::after,
+.main-nav a.active::after {
+    width: 100%;
 }
 
-/* Responsive Header */
-@media (max-width: 768px) {
-    .header-container {
+.main-nav a.active {
+    color: var(--color-diia-blue);
+    font-weight: 600;
+}
+
+.header-auth-section {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+}
+
+.user-welcome {
+    font-size: 1rem;
+    color: var(--color-text-secondary);
+    font-weight: 500;
+}
+
+.logout-button {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+}
+
+.menu-toggle {
+    display: none; /* Приховуємо на великих екранах */
+    background: none;
+    border: none;
+    font-size: 1.8rem;
+    color: var(--color-diia-blue);
+    cursor: pointer;
+    padding: var(--spacing-xs);
+}
+
+/* Mobile Menu Styles */
+@media (max-width: 992px) {
+    .main-nav {
+        display: none; /* Приховуємо навігацію за замовчуванням */
         flex-direction: column;
-        gap: var(--spacing-md);
+        position: absolute;
+        top: 100%; /* Під хедером */
+        left: 0;
+        width: 100%;
+        background-color: var(--color-bg-header);
+        box-shadow: var(--shadow-md);
+        padding: var(--spacing-lg) 0;
+        border-top: 1px solid var(--color-border);
+        z-index: 999;
+        animation: slideDown 0.3s ease-out forwards; /* Анімація відкриття */
     }
-    .nav-menu {
+
+    .main-nav.open {
         display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: var(--spacing-md);
     }
-    .nav-menu a {
-        margin-left: 0;
+
+    .main-nav ul {
+        flex-direction: column;
+        align-items: flex-start; /* Вирівнюємо пункти ліворуч */
+        gap: var(--spacing-sm);
+        padding: 0 var(--spacing-lg);
+    }
+
+    .main-nav li {
+        width: 100%;
+    }
+
+    .main-nav a {
+        padding: var(--spacing-md) var(--spacing-sm);
+        width: 100%;
+        border-radius: var(--border-radius-sm);
+    }
+
+    .main-nav a::after {
+        display: none; /* Приховуємо підкреслення в мобільному меню */
+    }
+
+    .main-nav a.active {
+        background-color: var(--color-diia-light-blue);
+        color: var(--color-diia-blue);
+    }
+
+    .header-auth-section {
+        display: none; /* Приховуємо на мобільних, якщо меню відкрите */
+    }
+
+    .menu-toggle {
+        display: block; /* Показуємо на мобільних */
+    }
+
+    /* Якщо меню відкрите, ховаємо секцію авторизації */
+    .main-nav.open + .header-auth-section {
+        display: none;
+    }
+
+    /* Анімація закриття */
+    .main-nav:not(.open) {
+        animation: slideUp 0.3s ease-in forwards;
+    }
+}
+
+/* Анімації для мобільного меню */
+@keyframes slideDown {
+    from {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateY(-100%);
+        opacity: 0;
+        display: none; /* Приховати після анімації */
+    }
+}
+
+@media (max-width: 480px) {
+    .logo {
+        font-size: 1.5rem;
+        gap: var(--spacing-xs);
+    }
+    .logo-icon {
+        width: 30px;
+        height: 30px;
+    }
+    .menu-toggle {
+        font-size: 1.5rem;
     }
 }
