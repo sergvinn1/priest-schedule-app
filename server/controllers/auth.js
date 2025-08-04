@@ -8,7 +8,7 @@ const sendTokenResponse = (user, statusCode, res) => {
     const token = user.getSignedJwtToken(); // Метод defined in User model
 
     const options = {
-        expires: new Date(Date.now() + parseInt(process.env.JWT_COOKIE_EXPIRE) * 24 * 60 * 60 * 1000), // Наприклад, 30 днів
+        expires: new Date(Date.now() + (+process.env.JWT_COOKIE_EXPIRE) * 24 * 60 * 60 * 1000), // Наприклад, 30 днів
         httpOnly: true // Запобігає доступу до куки з клієнтського JavaScript
     };
 

@@ -1,0 +1,45 @@
+/* client/src/components/schedules/ScheduleCard.css (ПОВНИЙ КОД) */
+.schedule-card {
+    background-color: var(--color-bg-card);
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-md);
+    padding: var(--spacing-lg);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s ease-in-out;
+    height: 100%; /* Для Flexbox Grid */
+}
+
+.schedule-card:hover {
+    transform: translateY(-5px);
+}
+
+.schedule-card-header {
+    margin-bottom: var(--spacing-md);
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: var(--spacing-sm);
+}
+
+.schedule-dates {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--color-diia-blue);
+    text-align: center;
+}
+
+.schedule-card-body {
+    flex-grow: 1; /* Займе весь доступний простір */
+}
+
+.schedule-duty {
+    font-size: 1rem;
+    color: var(--color-diia-dark-text);
+    margin-bottom: var(--spacing-xs);
+    line-height: 1.4;
+}
+
+.duty-label {
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin-right: var(--spacing-xs);
+}

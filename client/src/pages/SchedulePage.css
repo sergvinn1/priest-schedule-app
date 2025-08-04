@@ -1,0 +1,42 @@
+/* client/src/pages/SchedulePage.css (ЗМІНИТИ) */
+
+/* Додати мінімальну висоту для контейнера сітки */
+.schedules-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: var(--spacing-lg);
+    width: 100%;
+    margin-top: var(--spacing-xl);
+    min-height: 300px; /* Додати мінімальну висоту, щоб уникнути стрибків */
+}
+
+/* Переконайтеся, що повідомлення про завантаження/помилку/відсутність мають адекватну мінімальну висоту */
+.loading-message,
+.error-message,
+.no-schedules-message {
+    text-align: center;
+    padding: var(--spacing-md);
+    border-radius: var(--border-radius-md);
+    margin-top: var(--spacing-xl);
+    font-size: 1.1rem;
+    min-height: 150px; /* Додати мінімальну висоту, щоб вони не були занадто малими */
+    display: flex; /* Для центрування тексту по вертикалі */
+    align-items: center;
+    justify-content: center;
+    flex-direction: column; /* Якщо буде декілька рядків тексту */
+}
+
+.loading-message {
+    background-color: var(--color-diia-light-blue);
+    color: var(--color-diia-blue);
+}
+
+.error-message {
+    background-color: rgba(220, 53, 69, 0.1);
+    color: var(--color-danger);
+}
+
+.no-schedules-message {
+    background-color: rgba(255, 193, 7, 0.1);
+    color: var(--color-warning);
+}

@@ -35,7 +35,7 @@ const PriestsPage = () => {
         };
 
         fetchPriests();
-    }, []);
+    }, [API_URL]);
 
     if (loading) {
         return (
