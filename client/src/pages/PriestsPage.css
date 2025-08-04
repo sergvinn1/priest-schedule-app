@@ -1,0 +1,27 @@
+/* client/src/pages/PriestsPage.css (ПОВНИЙ КОД) */
+.priests-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); /* Адаптивна сітка */
+    gap: var(--spacing-lg); /* Відступ між картками */
+    width: 100%; /* Забезпечити, що сітка займає всю ширину контейнера */
+    margin-top: var(--spacing-xl);
+}
+
+/* Адаптивність для менших екранів */
+@media (max-width: 768px) {
+    .priests-grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: var(--spacing-md);
+    }
+}
+
+@media (max-width: 480px) {
+    .priests-grid {
+        grid-template-columns: 1fr; /* Одна колонка на дуже маленьких екранах */
+        gap: var(--spacing-md);
+    }
+}
+
+.page-container.error-container {
+    color: var(--color-danger);
+}

@@ -1,0 +1,57 @@
+/* client/src/components/priests/PriestCard.css (ПОВНИЙ КОД) */
+.priest-card {
+    background-color: var(--color-bg-card);
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-md);
+    padding: var(--spacing-lg);
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Центрування вмісту картки */
+    text-align: center;
+    transition: transform 0.2s ease-in-out;
+    height: 100%; /* Забезпечити однакову висоту для flexbox grid */
+}
+
+.priest-card:hover {
+    transform: translateY(-5px);
+}
+
+.priest-card-header {
+    margin-bottom: var(--spacing-md);
+}
+
+.priest-avatar-icon {
+    font-size: 4rem; /* Збільшити розмір іконки */
+    color: var(--color-diia-blue);
+    margin-bottom: var(--spacing-sm);
+}
+
+.priest-full-name {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--color-diia-dark-text);
+}
+
+.priest-card-body {
+    width: 100%;
+}
+
+.priest-title {
+    font-size: 1.1rem;
+    color: var(--color-text-secondary);
+    margin-bottom: var(--spacing-md);
+}
+
+.priest-contact {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Центрування контакту */
+    font-size: 0.95rem;
+    color: var(--color-text-primary);
+    margin-bottom: var(--spacing-xs);
+}
+
+.contact-icon {
+    margin-right: var(--spacing-xs);
+    color: var(--color-diia-blue);
+}
