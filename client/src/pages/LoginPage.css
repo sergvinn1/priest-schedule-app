@@ -1,0 +1,35 @@
+/* client/src/pages/LoginPage.css (ПОВНИЙ КОД) */
+.login-page-container {
+    /* Додаткові стилі для контейнера, якщо потрібно */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - var(--header-height) - var(--footer-height)); /* Приблизно, щоб форма була по центру */
+}
+
+.login-form-card {
+    background-color: var(--color-bg-card);
+    padding: var(--spacing-xl);
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-md);
+    width: 100%;
+    max-width: 400px; /* Обмежити ширину форми */
+    text-align: center;
+}
+
+.login-form-card h2 {
+    font-size: 1.8rem;
+    color: var(--color-diia-blue);
+    margin-bottom: var(--spacing-xl);
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md); /* Відступи між елементами форми */
+}
+
+.login-form .button {
+    width: 100%;
+    margin-top: var(--spacing-md);
+}

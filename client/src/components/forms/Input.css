@@ -1,0 +1,39 @@
+/* client/src/components/forms/Input.css (ПОВНИЙ КОД) */
+.input-group {
+    margin-bottom: var(--spacing-md);
+    width: 100%;
+}
+
+.input-label {
+    display: block;
+    margin-bottom: var(--spacing-xs);
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--color-diia-dark-text);
+}
+
+.input-field {
+    width: 100%;
+    padding: var(--spacing-sm) var(--spacing-md);
+    border: 1px solid var(--color-diia-border);
+    border-radius: var(--border-radius-md);
+    font-size: 1rem;
+    color: var(--color-text-primary);
+    background-color: var(--color-bg-card);
+    transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.input-field::placeholder {
+    color: var(--color-text-secondary);
+}
+
+.input-field:focus {
+    outline: none;
+    border-color: var(--color-diia-blue);
+    box-shadow: 0 0 0 3px var(--color-diia-light-blue);
+}
+
+/* Error state (if needed later) */
+.input-field.error {
+    border-color: var(--color-danger);
+}

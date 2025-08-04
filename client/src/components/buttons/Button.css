@@ -1,0 +1,47 @@
+/* client/src/components/buttons/Button.css (ПОВНИЙ КОД) */
+.button {
+    padding: var(--spacing-sm) var(--spacing-lg);
+    border: none;
+    border-radius: var(--border-radius-md);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out, opacity 0.2s ease-in-out;
+    display: inline-flex; /* Для розміщення іконок поруч з текстом */
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-xs);
+}
+
+.button.primary {
+    background-color: var(--color-diia-blue);
+    color: white;
+}
+
+.button.primary:hover:not(:disabled) {
+    background-color: #004ba0; /* Darker blue */
+}
+
+.button.secondary {
+    background-color: var(--color-secondary);
+    color: white;
+}
+
+.button.secondary:hover:not(:disabled) {
+    background-color: #5a6268;
+}
+
+.button.outline {
+    background-color: transparent;
+    border: 1px solid var(--color-diia-blue);
+    color: var(--color-diia-blue);
+}
+
+.button.outline:hover:not(:disabled) {
+    background-color: var(--color-diia-light-blue);
+}
+
+.button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
